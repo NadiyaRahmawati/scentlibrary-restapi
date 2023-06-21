@@ -23,7 +23,6 @@ function result(succ, msg, details) {
             message: msg,
         }
     }
-
 }
 //register
 router.post('/register', async (req, res) => {
@@ -46,7 +45,6 @@ router.post('/register', async (req, res) => {
         username: req.body.username,
         password: hashPassword
     })
-
     try {
         const saveUser = await user.save()
         res.status(200).json(result(1, 'Register User Success!', saveUser))
@@ -54,7 +52,6 @@ router.post('/register', async (req, res) => {
         res.status(200).json(result(0, 'Register User Failure!'))
     }
 })
-
 //Login
 router.post('/login', async (req, res) => {
     const {
