@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const cors = require('cors');
-
-require('dotenv').config()
+const cors = require('cors')
+require('dotenv/config')
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -12,17 +11,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors())
 
-//import routes
-const authRoutes =  require('./routes/auth')
-const addPerfumeRoutes = require('./routes/addPerfume')
-
-app.use('/auth', authRoutes)
-app.use('/addPerfume', addPerfumeRoutes)
-
-
 app.get("/", (req, res) => {
-  res.send("haloo aigoo");
-})
+  res.send("Hello  3!");
+});
 
 mongoose.connect(process.env.DB_CONNECTION, {
   useNewUrlParser: true,
@@ -31,13 +22,13 @@ mongoose.connect(process.env.DB_CONNECTION, {
 
 let db = mongoose.connection
 
-//handel error
-db.on('error', console.error.bind(console, 'Error Establishing Database Connection'))
-//handel sukses
-db.once('open', () => {
-  console.log('Database Is Connected');
-})
+// handle error
+db.on('error', console.error.bind(console, 'Error establishing a database connection'))
 
+// handle success
+db.once('open', () => {
+  console.log('Database is connected')
+})
 app.listen(process.env.PORT, () => {
-  console.log(`Server Running on port ${process.env.PORT}`);
+  console.log(`Server running on port ${process.env.PORT}`);
 });
