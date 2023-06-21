@@ -11,6 +11,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors())
 
+const authRoutes = require('./routes/auth')
+const addperfumeRoutes = require('./routes/addperfume')
+
+app.use('/auth', authRoutes)
+app.use('/addperfume', addperfumeRoutes)
+
 app.get("/", (req, res) => {
   res.send("Hello  3!");
 });
